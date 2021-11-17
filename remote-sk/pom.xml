@@ -3,4 +3,22 @@
   <groupId>projekat1-sk</groupId>
   <artifactId>remote-sk</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+     <maven.compiler.source>1.8</maven.compiler.source>
+     <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  
+  <dependencies>
+	<dependency>
+  		<groupId>projekat1-sk</groupId>
+  		<artifactId>maven-project-sk</artifactId><!-- spec-sk -->
+  		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+    </dependency>
+  </dependencies>   
 </project>
