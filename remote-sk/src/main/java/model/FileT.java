@@ -6,7 +6,7 @@ import java.util.List;
 
 import users.User;
 
-public class FileRemote implements File{
+public class FileT implements File{
 	
 	public void uploadDrive(String name, String id) {
 		// TODO Auto-generated method stub
@@ -24,7 +24,7 @@ public class FileRemote implements File{
 	         List<String> parents = new ArrayList<String>();
 	         parents.add(path);
 	         metadata.setParents(parents);
-	         com.google.api.services.drive.model.File file =  StorageRemote.drive.files().create(metadata).setFields("id, parents").execute();
+	         com.google.api.services.drive.model.File file =  StorageT.drive.files().create(metadata).setFields("id, parents").execute();
 	         System.out.println(file.getId());
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -43,7 +43,7 @@ public class FileRemote implements File{
 		// TODO Auto-generated method stub
 		try {
 			String fileID = path;
-			StorageRemote.drive.files().delete(fileID).execute();
+			StorageT.drive.files().delete(fileID).execute();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -54,7 +54,7 @@ public class FileRemote implements File{
 		try {
 			String toMove = path1;
 			String folderID = path2;
-			com.google.api.services.drive.model.File file = StorageRemote.drive.files().get(toMove)
+			com.google.api.services.drive.model.File file = StorageT.drive.files().get(toMove)
 			    .setFields("parents")
 			    .execute();
 			StringBuilder previousParents = new StringBuilder();
@@ -62,7 +62,7 @@ public class FileRemote implements File{
 			  previousParents.append(parent);
 			  previousParents.append(',');
 			}
-			file = StorageRemote.drive.files().update(toMove, null)
+			file = StorageT.drive.files().update(toMove, null)
 				    .setAddParents(folderID)
 				    .setRemoveParents(previousParents.toString())
 				    .setFields("id, parents")

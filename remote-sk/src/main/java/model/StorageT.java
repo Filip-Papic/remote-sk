@@ -24,7 +24,7 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 
-public class StorageRemote implements Storage{
+public class StorageT implements Storage{
 	
 	private static final String credentialsPath = "/client_secret.json";
 	
@@ -48,7 +48,7 @@ public class StorageRemote implements Storage{
 	}
 	
 	public static Credential authorize() throws IOException{
-		InputStream in = StorageRemote.class.getResourceAsStream(credentialsPath);
+		InputStream in = StorageT.class.getResourceAsStream(credentialsPath);
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 		
 		// Build flow and trigger user authorization request.
@@ -65,7 +65,7 @@ public class StorageRemote implements Storage{
 			.build();
 	}
 	
-	public StorageRemote() throws IOException{
+	public StorageT() throws IOException{
 		this.drive = getDriveService();
 		/*
 		FileList result = drive.files().list()
@@ -91,9 +91,9 @@ public class StorageRemote implements Storage{
 	public void createDir(String path, String name) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("deprecation")
-		DirectoryRemote dir;
+		DirectoryT dir;
 		try {
-			dir = (DirectoryRemote) Class.forName("model.DirectoryRemote").newInstance();
+			dir = (DirectoryT) Class.forName("model.DirectoryRemote").newInstance();
 			dir.create(path, name);
 			//java.io.File metaData = new java.io.File(path);
 			
@@ -125,9 +125,9 @@ public class StorageRemote implements Storage{
 	public void createMultipleDirs(String path, String name, int i) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("deprecation")
-		DirectoryRemote dir;
+		DirectoryT dir;
 		try {
-			dir = (DirectoryRemote) Class.forName("model.DirectoryRemote").newInstance();
+			dir = (DirectoryT) Class.forName("model.DirectoryRemote").newInstance();
 			dir.createMultiple(path, name, i);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -144,9 +144,9 @@ public class StorageRemote implements Storage{
 	public void deleteDir(String path, String name) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("deprecation")
-		DirectoryRemote dir;
+		DirectoryT dir;
 		try {
-			dir = (DirectoryRemote) Class.forName("model.DirectoryRemote").newInstance();
+			dir = (DirectoryT) Class.forName("model.DirectoryRemote").newInstance();
 			dir.delete(path, name);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -163,9 +163,9 @@ public class StorageRemote implements Storage{
 	public void moveDir(String path1, String path2) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("deprecation")
-		DirectoryRemote dir;
+		DirectoryT dir;
 		try {
-			dir = (DirectoryRemote) Class.forName("model.DirectoryRemote").newInstance();
+			dir = (DirectoryT) Class.forName("model.DirectoryRemote").newInstance();
 			dir.move(path1, path2);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -182,10 +182,10 @@ public class StorageRemote implements Storage{
 	public void createFile(String path, String name) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("deprecation")
-		FileRemote file;
-		DirectoryRemote dir;
+		FileT file;
+		DirectoryT dir;
 		try {
-			file = (FileRemote) Class.forName("model.FileRemote").newInstance();
+			file = (FileT) Class.forName("model.FileRemote").newInstance();
 			file.create(path, name);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -203,10 +203,10 @@ public class StorageRemote implements Storage{
 	public void createMultipleFiles(String path, String name, int i) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("deprecation")
-		FileRemote file;
-		DirectoryRemote dir;
+		FileT file;
+		DirectoryT dir;
 		try {
-			file = (FileRemote) Class.forName("model.FileRemote").newInstance();
+			file = (FileT) Class.forName("model.FileRemote").newInstance();
 			file.createMultiple(path, name, i);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -222,10 +222,10 @@ public class StorageRemote implements Storage{
 	public void deleteFile(String path, String name) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("deprecation")
-		FileRemote file;
-		DirectoryRemote dir;
+		FileT file;
+		DirectoryT dir;
 		try {
-			file = (FileRemote) Class.forName("model.FileRemote").newInstance();
+			file = (FileT) Class.forName("model.FileRemote").newInstance();
 			file.delete(path, name);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -241,10 +241,10 @@ public class StorageRemote implements Storage{
 	public void moveFile(String path1, String path2) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("deprecation")
-		FileRemote file;
-		DirectoryRemote dir;
+		FileT file;
+		DirectoryT dir;
 		try {
-			file = (FileRemote) Class.forName("model.FileRemote").newInstance();
+			file = (FileT) Class.forName("model.FileRemote").newInstance();
 			file.move(path1, path2);
 		} catch (InstantiationException e) {
 			e.printStackTrace();

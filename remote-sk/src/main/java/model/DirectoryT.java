@@ -10,7 +10,7 @@ import java.util.List;
 
 import users.User;
 
-public class DirectoryRemote implements Directory{
+public class DirectoryT implements Directory{
 	
 	public void checkPrivilegeDir(User user) {
 		// TODO Auto-generated method stub
@@ -42,7 +42,7 @@ public class DirectoryRemote implements Directory{
 	         parents.add(path);
 	         metadata.setParents(parents);
 	         metadata.setMimeType("application/vnd.google-apps.folder");
-	         com.google.api.services.drive.model.File file =  StorageRemote.drive.files().create(metadata).setFields("id, parents").execute();
+	         com.google.api.services.drive.model.File file = StorageT.drive.files().create(metadata).setFields("id, parents").execute();
 	         System.out.println(file.getId());
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class DirectoryRemote implements Directory{
 		// TODO Auto-generated method stub
 		try {
 			String fileID = path;
-			StorageRemote.drive.files().delete(fileID).execute();
+			StorageT.drive.files().delete(fileID).execute();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -73,7 +73,7 @@ public class DirectoryRemote implements Directory{
 		try {
 				String toMove = path1;
 				String folderID = path2;
-				com.google.api.services.drive.model.File file = StorageRemote.drive.files().get(toMove)
+				com.google.api.services.drive.model.File file = StorageT.drive.files().get(toMove)
 				    .setFields("parents")
 				    .execute();
 				StringBuilder previousParents = new StringBuilder();
@@ -81,7 +81,7 @@ public class DirectoryRemote implements Directory{
 				  previousParents.append(parent);
 				  previousParents.append(',');
 				}
-				file = StorageRemote.drive.files().update(toMove, null)
+				file = StorageT.drive.files().update(toMove, null)
 					    .setAddParents(folderID)
 					    .setRemoveParents(previousParents.toString())
 					    .setFields("id, parents")
