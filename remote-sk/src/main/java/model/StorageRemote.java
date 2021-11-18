@@ -122,6 +122,24 @@ public class StorageRemote implements Storage{
 			e.printStackTrace();
 		}
 	}
+	public void createMultipleDirs(String path, String name, int i) {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("deprecation")
+		DirectoryRemote dir;
+		try {
+			dir = (DirectoryRemote) Class.forName("model.DirectoryRemote").newInstance();
+			dir.createMultiple(path, name, i);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		}catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public void deleteDir(String path, String name) {
 		// TODO Auto-generated method stub
@@ -161,6 +179,86 @@ public class StorageRemote implements Storage{
 		
 		
 	}
+	public void createFile(String path, String name) {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("deprecation")
+		FileRemote file;
+		DirectoryRemote dir;
+		try {
+			file = (FileRemote) Class.forName("model.FileRemote").newInstance();
+			file.create(path, name);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		}catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	public void createMultipleFiles(String path, String name, int i) {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("deprecation")
+		FileRemote file;
+		DirectoryRemote dir;
+		try {
+			file = (FileRemote) Class.forName("model.FileRemote").newInstance();
+			file.createMultiple(path, name, i);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		}catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void deleteFile(String path, String name) {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("deprecation")
+		FileRemote file;
+		DirectoryRemote dir;
+		try {
+			file = (FileRemote) Class.forName("model.FileRemote").newInstance();
+			file.delete(path, name);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		}catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void moveFile(String path1, String path2) {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("deprecation")
+		FileRemote file;
+		DirectoryRemote dir;
+		try {
+			file = (FileRemote) Class.forName("model.FileRemote").newInstance();
+			file.move(path1, path2);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		}catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
