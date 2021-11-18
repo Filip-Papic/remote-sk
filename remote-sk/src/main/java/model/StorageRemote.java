@@ -5,6 +5,7 @@ import users.User;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,6 +21,8 @@ import com.google.api.client.util.store.DataStoreFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
+import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
 
 public class StorageRemote implements Storage{
 	
@@ -64,7 +67,21 @@ public class StorageRemote implements Storage{
 	
 	public StorageRemote() throws IOException{
 		this.drive = getDriveService();
-		
+		/*
+		FileList result = drive.files().list()
+				.setPageSize(10)
+				.setFields("nextPageToken, files(id, name)")
+				.execute();
+			List<com.google.api.services.drive.model.File> files = result.getFiles();
+			if (files == null || files.isEmpty()) {
+				System.out.println("No files found.");
+			} else {
+				System.out.println("Files:");
+				for (com.google.api.services.drive.model.File file : files) {
+					System.out.printf("%s (%s)\n", file.getName(), file.getId());
+				}
+			}
+		*/
 	}
 	
 	public boolean auth(String username, String password) {
@@ -73,7 +90,35 @@ public class StorageRemote implements Storage{
 	}
 	public void create(String path, String name) {
 		// TODO Auto-generated method stub
-		
+		@SuppressWarnings("deprecation")
+		DirectoryRemote dir;
+		try {
+			dir = (DirectoryRemote) Class.forName("model.DirectoryRemote").newInstance();
+			dir.create(path, name);
+			//java.io.File metaData = new java.io.File(path);
+			File metaData = new File();
+			metaData.setName(name);
+			//List<String> parents = new ArrayList<String>();
+			//parents.add("smog");
+			//metaData.setParents(parents);
+			metaData.setMimeType("application/vnd.google-apps.folder");
+
+			File file = drive.files().create(metaData)
+			    .setFields("id")
+			    .execute();
+			
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	public String getName() {
 		// TODO Auto-generated method stub
