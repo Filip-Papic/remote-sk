@@ -88,7 +88,7 @@ public class StorageRemote implements Storage{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	public void create(String path, String name) {
+	public void createDir(String path, String name) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("deprecation")
 		DirectoryRemote dir;
@@ -96,6 +96,10 @@ public class StorageRemote implements Storage{
 			dir = (DirectoryRemote) Class.forName("model.DirectoryRemote").newInstance();
 			dir.create(path, name);
 			//java.io.File metaData = new java.io.File(path);
+			
+			
+			
+			/*
 			File metaData = new File();
 			metaData.setName(name);
 			//List<String> parents = new ArrayList<String>();
@@ -106,7 +110,7 @@ public class StorageRemote implements Storage{
 			File file = drive.files().create(metaData)
 			    .setFields("id")
 			    .execute();
-			
+			*/
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,9 +120,46 @@ public class StorageRemote implements Storage{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}catch(IOException e) {
+		}
+	}
+	
+	public void deleteDir(String path, String name) {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("deprecation")
+		DirectoryRemote dir;
+		try {
+			dir = (DirectoryRemote) Class.forName("model.DirectoryRemote").newInstance();
+			dir.delete(path, name);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		}catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void moveDir(String path1, String path2) {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("deprecation")
+		DirectoryRemote dir;
+		try {
+			dir = (DirectoryRemote) Class.forName("model.DirectoryRemote").newInstance();
+			dir.move(path1, path2);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		}catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 	public String getName() {
 		// TODO Auto-generated method stub
