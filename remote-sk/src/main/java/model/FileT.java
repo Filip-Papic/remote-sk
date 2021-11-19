@@ -1,8 +1,12 @@
 package model;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.api.client.http.FileContent;
 
 import users.User;
 
@@ -70,6 +74,31 @@ public class FileT implements File{
 			}catch(IOException e) {
 				e.printStackTrace();
 			}
+		
+	}
+	
+	public void upload(String path, String dest) {
+		// TODO Auto-generated method stub
+		try {
+			java.io.File file = new java.io.File(path);
+			if(file.isDirectory()) {
+				System.out.println("Selected object is not a file, operation terminated.");
+				return;
+			}
+			com.google.api.services.drive.model.File metadata = new com.google.api.services.drive.model.File();
+			metadata.setName(file.getName());
+			List<String> parents = new ArrayList<String>();
+	        parents.add(dest);
+			metadata.setParents(parents);
+			StorageT.drive.files().create(metadata, new FileContent(Files.probeContentType(Paths.get(path)), file)).execute();
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 	public void downloadDrive(String name, String id) {

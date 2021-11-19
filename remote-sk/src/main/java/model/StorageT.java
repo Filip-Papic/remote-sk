@@ -93,7 +93,7 @@ public class StorageT implements Storage{
 		@SuppressWarnings("deprecation")
 		DirectoryT dir;
 		try {
-			dir = (DirectoryT) Class.forName("model.DirectoryRemote").newInstance();
+			dir = (DirectoryT) Class.forName("model.DirectoryT").newInstance();
 			dir.create(path, name);
 			//java.io.File metaData = new java.io.File(path);
 			
@@ -127,7 +127,7 @@ public class StorageT implements Storage{
 		@SuppressWarnings("deprecation")
 		DirectoryT dir;
 		try {
-			dir = (DirectoryT) Class.forName("model.DirectoryRemote").newInstance();
+			dir = (DirectoryT) Class.forName("model.DirectoryT").newInstance();
 			dir.createMultiple(path, name, i);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -146,7 +146,7 @@ public class StorageT implements Storage{
 		@SuppressWarnings("deprecation")
 		DirectoryT dir;
 		try {
-			dir = (DirectoryT) Class.forName("model.DirectoryRemote").newInstance();
+			dir = (DirectoryT) Class.forName("model.DirectoryT").newInstance();
 			dir.delete(path, name);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -165,7 +165,7 @@ public class StorageT implements Storage{
 		@SuppressWarnings("deprecation")
 		DirectoryT dir;
 		try {
-			dir = (DirectoryT) Class.forName("model.DirectoryRemote").newInstance();
+			dir = (DirectoryT) Class.forName("model.DirectoryT").newInstance();
 			dir.move(path1, path2);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -185,7 +185,7 @@ public class StorageT implements Storage{
 		FileT file;
 		DirectoryT dir;
 		try {
-			file = (FileT) Class.forName("model.FileRemote").newInstance();
+			file = (FileT) Class.forName("model.FileT").newInstance();
 			file.create(path, name);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -206,7 +206,7 @@ public class StorageT implements Storage{
 		FileT file;
 		DirectoryT dir;
 		try {
-			file = (FileT) Class.forName("model.FileRemote").newInstance();
+			file = (FileT) Class.forName("model.FileT").newInstance();
 			file.createMultiple(path, name, i);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -225,7 +225,7 @@ public class StorageT implements Storage{
 		FileT file;
 		DirectoryT dir;
 		try {
-			file = (FileT) Class.forName("model.FileRemote").newInstance();
+			file = (FileT) Class.forName("model.FileT").newInstance();
 			file.delete(path, name);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
@@ -244,8 +244,27 @@ public class StorageT implements Storage{
 		FileT file;
 		DirectoryT dir;
 		try {
-			file = (FileT) Class.forName("model.FileRemote").newInstance();
+			file = (FileT) Class.forName("model.FileT").newInstance();
 			file.move(path1, path2);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		}catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void uploadFile(String path, String dest) {
+		// TODO Auto-generated method stub
+		FileT file;
+		DirectoryT dir;
+		try {
+			file = (FileT) Class.forName("model.FileT").newInstance();
+			file.upload(path, dest);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		}catch (IllegalAccessException e) {
