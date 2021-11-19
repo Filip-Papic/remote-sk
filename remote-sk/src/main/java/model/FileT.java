@@ -1,6 +1,9 @@
 package model;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -97,10 +100,21 @@ public class FileT implements File{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+	}
+	public void download(String path) {
+		// TODO Auto-generated method stub
+		try {
+			OutputStream outputStream = new ByteArrayOutputStream();
+			StorageT.drive.files().get(path)
+			    .executeMediaAndDownloadTo(outputStream);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		
 	}
+	
+	
 	public void downloadDrive(String name, String id) {
 		// TODO Auto-generated method stub
 		

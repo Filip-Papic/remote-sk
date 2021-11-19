@@ -258,13 +258,16 @@ public class StorageT implements Storage{
 		
 	}
 	
-	public void uploadFile(String path, String dest) {
+	public void uploadFile(String dest, String... paths) {
 		// TODO Auto-generated method stub
 		FileT file;
 		DirectoryT dir;
 		try {
 			file = (FileT) Class.forName("model.FileT").newInstance();
-			file.upload(path, dest);
+			for(String path:paths) {
+				file.upload(path, dest);
+			}
+			//file.upload(path, dest);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		}catch (IllegalAccessException e) {
@@ -276,6 +279,28 @@ public class StorageT implements Storage{
 		}
 		
 	}
+	public void downloadFile(String... paths) {
+		// TODO Auto-generated method stub
+		FileT file;
+		DirectoryT dir;
+		try {
+			file = (FileT) Class.forName("model.FileT").newInstance();
+			for(String path:paths) {
+				file.download(path);
+			}
+			//file.upload(path, dest);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		}catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	
 	public String getName() {
