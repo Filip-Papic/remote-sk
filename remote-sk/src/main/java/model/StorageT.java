@@ -65,6 +65,8 @@ public class StorageT implements Storage{
 			.build();
 	}
 	
+	
+	
 	public StorageT() throws IOException{
 		this.drive = getDriveService();
 		/*
@@ -391,6 +393,10 @@ public class StorageT implements Storage{
 	public int setSize(int size) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	public Directory rootDirectory() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

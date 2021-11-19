@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.client.http.FileContent;
@@ -123,11 +124,12 @@ public class FileT implements File{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public void lookupAllFilesInDate(String path, String name) {
+	
+	public void lookupAllFilesInDate(String path, Date date) {
 		// TODO Auto-generated method stub
 		
 	}
-	public void lookupAllFilesinDir(String path, String name) {
+	public void lookupAllFilesinDir(String path) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -135,22 +137,23 @@ public class FileT implements File{
 		// TODO Auto-generated method stub
 		
 	}
-	public void lookupAllFilesSortedDate(String path, String name) {
+	public void lookupAllFilesSortedDate(String path) {
 		// TODO Auto-generated method stub
 		
 	}
-	public void lookupAllFilesSortedEdit(String path, String name) {
+	public void lookupAllFilesSortedEdit(String path) {
 		// TODO Auto-generated method stub
 		
 	}
-	public void lookupAllFilesSortedName(String path, String name) {
+	public void lookupAllFilesSortedName(String path) {
 		// TODO Auto-generated method stub
 		
 	}
-	public void lookupAllFilesWithExtension(String path, String name) {
+	public void lookupAllFilesWithExtension(String path, String ext) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	
 	
 
