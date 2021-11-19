@@ -305,13 +305,12 @@ public class StorageT implements Storage{
 		//System.out.println("'\"" + fileID + "' in parents and mimeType='application/vnd.google-apps.files'");
 		try {
 			FileList lista = drive.files().list()
-					  .setQ("'1rJLv3EJVs9pETR_5h4aoKLJQfZZJmI1h' in parents and mimeType='application/vnd.google-apps.file'")
+					  .setQ("'" + fileID + "' in parents and mimeType='application/vnd.google-apps.file'")
 				      .setSpaces("drive")
 				      .setFields("nextPageToken, files(id, name, parents)")
 				      .execute();
 			
 			for (File file : lista.getFiles()) {
-			   System.out.println("alo");
 			   System.out.println("File name: " + file.getName() + ", file ID:  " + file.getId());
 			  }
 		}catch(IOException e) {
@@ -329,13 +328,48 @@ public class StorageT implements Storage{
 					      .execute();
 					
 				for (File file : lista.getFiles()) {
-				   System.out.println("alo");
 				   System.out.println("File name: " + file.getName() + ", file ID:  " + file.getId());
 					}
 				}catch(IOException e) {
 					e.printStackTrace();
 				}
 	}
+	public void findFIlesByName(String name) {
+		// TODO Auto-generated method stub
+		try {
+			FileList lista = drive.files().list()
+					  .setQ("name='"+name+"'")
+				      .setSpaces("drive")
+				      .setFields("nextPageToken, files(id, name, parents)")
+				      .execute();
+			for(File file : lista.getFiles()) {
+				System.out.println("File name: " + file.getName() + " File id: " + file.getId()
+				+ " parent: " + file.getParents());
+			}
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
+	public void listFilesByCreationDate(String operator, String date) {
+		// TODO Auto-generated method stub
+		try {
+			FileList lista = drive.files().list()
+					  .setQ("createdTime " + operator + " " + date)
+				      .setSpaces("drive")
+				      .setFields("nextPageToken, files(id, name, parents)")
+				      .execute();
+			for(File file : lista.getFiles()) {
+				System.out.println("File name: " + file.getName() + " created time: " + file.getCreatedTime());
+			}
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	
 	public String getName() {
