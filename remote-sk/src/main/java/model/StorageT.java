@@ -300,7 +300,42 @@ public class StorageT implements Storage{
 		}
 		
 	}
-	
+	public void listFilesInDir(String fileID) {
+		// TODO Auto-generated method stub
+		//System.out.println("'\"" + fileID + "' in parents and mimeType='application/vnd.google-apps.files'");
+		try {
+			FileList lista = drive.files().list()
+					  .setQ("'1rJLv3EJVs9pETR_5h4aoKLJQfZZJmI1h' in parents and mimeType='application/vnd.google-apps.file'")
+				      .setSpaces("drive")
+				      .setFields("nextPageToken, files(id, name, parents)")
+				      .execute();
+			
+			for (File file : lista.getFiles()) {
+			   System.out.println("alo");
+			   System.out.println("File name: " + file.getName() + ", file ID:  " + file.getId());
+			  }
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void listDirsInDir(String fileID) {
+		// TODO Auto-generated method stub
+		//System.out.println("'\"" + fileID + "' in parents and mimeType='application/vnd.google-apps.files'");
+			try {
+				FileList lista = drive.files().list()
+						  .setQ("'"  + fileID + "' in parents and mimeType='application/vnd.google-apps.folder'")
+					      .setSpaces("drive")
+					      .setFields("nextPageToken, files(id, name, parents)")
+					      .execute();
+					
+				for (File file : lista.getFiles()) {
+				   System.out.println("alo");
+				   System.out.println("File name: " + file.getName() + ", file ID:  " + file.getId());
+					}
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
+	}
 	
 	
 	public String getName() {
