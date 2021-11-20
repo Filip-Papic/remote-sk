@@ -17,22 +17,6 @@ public class DirectoryT implements Directory{
 		
 	}
 	public void create(String path, String name) {
-		/*
-		Path path2 = null;
-		if(path != null && path.length() > 0) 					//!!!!!
-			path2 = Paths.get(path);
-		
-		Path path3 = Paths.get(path2 + java.io.File.separator + name);
-		
-		if(Files.exists(path2) && Files.exists(path3) == false) {
-			try {
-				Path path4 = Files.createDirectory(path3);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-		}
-		*/
 		
 		 //java.io.File source = new java.io.File(path);
 		try {

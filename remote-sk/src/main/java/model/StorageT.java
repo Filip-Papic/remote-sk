@@ -66,9 +66,14 @@ public class StorageT implements Storage{
 	}
 	
 	
+	DirectoryT root;
+	User currentUser;
+	User rootUser;
+	static ArrayList<User> loggedUsers;
 	
 	public StorageT() throws IOException{
 		this.drive = getDriveService();
+		
 		/*
 		FileList result = drive.files().list()
 				.setPageSize(10)
@@ -88,6 +93,7 @@ public class StorageT implements Storage{
 	
 	public boolean auth(String username, String password) {
 		// TODO Auto-generated method stub
+		System.out.println("autentikacija");
 		return false;
 	}
 	public void createDir(String path, String name) {
@@ -97,22 +103,7 @@ public class StorageT implements Storage{
 		try {
 			dir = (DirectoryT) Class.forName("model.DirectoryT").newInstance();
 			dir.create(path, name);
-			//java.io.File metaData = new java.io.File(path);
 			
-			
-			
-			/*
-			File metaData = new File();
-			metaData.setName(name);
-			//List<String> parents = new ArrayList<String>();
-			//parents.add("smog");
-			//metaData.setParents(parents);
-			metaData.setMimeType("application/vnd.google-apps.folder");
-
-			File file = drive.files().create(metaData)
-			    .setFields("id")
-			    .execute();
-			*/
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -354,6 +345,28 @@ public class StorageT implements Storage{
 		}
 		
 	}
+	public boolean checkRoot(String fileID) {
+		// TODO Auto-generated method stub
+		try {
+			FileList lista = drive.files().list()
+					  .setQ("name='rootDir' and mimeType='application/vnd.google-apps.folder'")
+				      .setSpaces("drive")
+				      .setFields("nextPageToken, files(id, name, parents)")
+				      .execute();
+			if(lista.isEmpty()) {
+				return true;
+			}else {
+				return false;
+			}
+			
+			
+		} catch (IOException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
 	public void listFilesByCreationDate(String operator, String date) {
 		// TODO Auto-generated method stub
 		try {
@@ -397,6 +410,18 @@ public class StorageT implements Storage{
 	public Directory rootDirectory() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public User getRootUser() {
+		return rootUser;
+	}
+	public DirectoryT getRoot() {
+		return root;
+	}
+	public void addLoggedUser(User user) {
+		this.loggedUsers.add(user);
+	}
+	public ArrayList<User> getLoggedUsers() {
+		return loggedUsers;
 	}
 	
 

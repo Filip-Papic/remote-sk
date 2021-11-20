@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import com.google.api.client.http.FileContent;
 
@@ -120,7 +121,7 @@ public class FileT implements File{
 		// TODO Auto-generated method stub
 		
 	}
-	public java.io.File[] lookup(String path, String name) {
+	public List<String> lookup(String path, String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -129,9 +130,9 @@ public class FileT implements File{
 		// TODO Auto-generated method stub
 		
 	}
-	public void lookupAllFilesinDir(String path) {
+	public Set<String> lookupAllFilesinDir(String path) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 	public void lookupAllFilesInWholeDir(String path, String name) {
 		// TODO Auto-generated method stub
